@@ -1,0 +1,23 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Demo-friendly rules for this project version.
+    // The app uses a custom username + phone-last-6 login for normal users,
+    // so user login must be able to read the users collection before Firebase Auth.
+    // For production, replace this with Firebase Auth/custom-claims based rules.
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    match /attendance/{attendanceId} {
+      allow read, write: if true;
+    }
+
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+
+  }
+}
